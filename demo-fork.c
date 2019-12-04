@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 
-#define NUMPROCS 4
+#define NUMPROCS 5
 
 void compute(int myid, int n);
 
