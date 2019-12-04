@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 
 #define NUMPROCS 5
-
+//hello
 void compute(int myid, int n);
 
 int main(int argc, char *argv[])
