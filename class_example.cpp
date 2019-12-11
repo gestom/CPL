@@ -1,24 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-SPoint2D add(SPoint2D a,SPoint2D b)
-{
-	SPoint2D c;
-	c.x = a.x + b.x; 
-	c.y = a.y + b.y;
-	return c;
-}
-
 class CPoint2D
 {
 	public:
 	CPoint2D();
 	~CPoint2D();
+	float getX();
+	float getY();
+	void setX(float ix);
+	void setY(float iy);
+	float getBuffer(int i);
 
+	private:
 	float x;
 	float y;
 	float *buffer;
 };
+
+float CPoint2D::getBuffer(int i)
+{
+	if (i>0 && i< 100/sizeof(float)) return buffer[i];
+	return 0;
+}
+
+float CPoint2D::getX()
+{
+	return x;
+}
+
+float CPoint2D::getY()
+{
+	return y;
+}
+
+void CPoint2D::setX(float ix)
+{
+	x = ix;
+}
+
+void CPoint2D::setY(float iy)
+{
+	y = iy;
+}
 
 CPoint2D::CPoint2D()
 {
@@ -36,7 +60,7 @@ CPoint2D::~CPoint2D()
 int main()
 {
 	CPoint2D a;
-	//printf("(%.3f %.3f)\n",a.x,a.y);	
+	printf("%.1f\n",a.getBuffer(100));
 
 	return 0;
 }
