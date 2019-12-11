@@ -1,10 +1,5 @@
 #include <stdio.h>
-
-typedef struct
-{
-	float x;
-	float y;
-}SPoint2D;
+#include <stdlib.h>
 
 SPoint2D add(SPoint2D a,SPoint2D b)
 {
@@ -14,15 +9,34 @@ SPoint2D add(SPoint2D a,SPoint2D b)
 	return c;
 }
 
+class CPoint2D
+{
+	public:
+	CPoint2D();
+	~CPoint2D();
+
+	float x;
+	float y;
+	float *buffer;
+};
+
+CPoint2D::CPoint2D()
+{
+	buffer = (float*)malloc(100);
+	x = 1;
+	y = 1;
+
+}
+
+CPoint2D::~CPoint2D()
+{
+	free(buffer);
+}
+
 int main()
 {
-	SPoint2D a;
-	SPoint2D b;
-	a.x = 0;
-	a.y = 1;
-	b.x = 1;
-	b.y = 1;
-	SPoint2D c = a + b;
-	printf("(%.3f %3.f) + (%.3f %3.f) = (%.3f %3.f)\n",a.x,a.y,b.x,b.y,c.x,c.y);	
+	CPoint2D a;
+	//printf("(%.3f %.3f)\n",a.x,a.y);	
+
 	return 0;
 }
