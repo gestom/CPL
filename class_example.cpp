@@ -1,66 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-class CPoint2D
+class A
 {
 	public:
-	CPoint2D();
-	~CPoint2D();
-	float getX();
-	float getY();
-	void setX(float ix);
-	void setY(float iy);
-	float getBuffer(int i);
-
-	private:
-	float x;
-	float y;
-	float *buffer;
+	void print0();
+	virtual void print1();
 };
 
-float CPoint2D::getBuffer(int i)
+void A::print0()
 {
-	if (i>0 && i< 100/sizeof(float)) return buffer[i];
-	return 0;
+	printf("A0\n");
 }
 
-float CPoint2D::getX()
+void A::print1()
 {
-	return x;
+	printf("A1\n");
 }
 
-float CPoint2D::getY()
+class B:public A 
 {
-	return y;
+	public:
+	void print0();
+	virtual void print1();
+};
+
+void B::print0()
+{
+	printf("B0\n");
 }
 
-void CPoint2D::setX(float ix)
+void B::print1()
 {
-	x = ix;
-}
-
-void CPoint2D::setY(float iy)
-{
-	y = iy;
-}
-
-CPoint2D::CPoint2D()
-{
-	buffer = (float*)malloc(100);
-	x = 1;
-	y = 1;
-
-}
-
-CPoint2D::~CPoint2D()
-{
-	free(buffer);
+	printf("B1\n");
 }
 
 int main()
 {
-	CPoint2D a;
-	printf("%.1f\n",a.getBuffer(100));
+	A *a = new A();
+	B *b = new B();
 
+	a = b;
+
+	a->print0();
+	b->print0();
+
+	a->print1();
+	b->print1();
 	return 0;
 }
